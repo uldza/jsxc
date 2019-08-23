@@ -4,87 +4,79 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
-## 3.3.0 - 2017-08-25
+## [Unreleased 4.0]
 ### Added
-- api to retrieve last message
-- [#567](https://github.com/jsxc/jsxc/issues/567) add external service discovery for ice server retrieval
-- [#574](https://github.com/jsxc/jsxc/issues/574) add automatic login
-- add debugging api
-- add Japanese
-- support mam:1
+- OMEMO ([XEP-0384])
+- MUC invitation
+    - [#341](https://github.com/jsxc/jsxc/issues/341) mediated invitation
+    - direct invitation ([XEP-0249])
+    - both also via contact drag and drop
+- [#6](https://github.com/jsxc/jsxc/issues/6) voice-only call
+- [#501](https://github.com/jsxc/jsxc/issues/501) JID escaping ([XEP-0106])
+- [#178](https://github.com/jsxc/jsxc/issues/178) add in-band password change ([XEP-0077])
+- [#178](https://github.com/jsxc/jsxc/issues/178) add in-band registration ([XEP-0077])
+- send file via file drop
+- insert emoticon at cursor position
+- MUC subject in window header
+- full screen layout
+- display presence messages
+- option to disable all plugins
+- highlight quotations
+- show notice if offline contacts are hidden
+- show notice if contact list is empty
+- prepared multi account support (still experimental)
+- [#512](https://github.com/jsxc/jsxc/issues/512) add option to specify storage backend
+- show MUC avatars
+- show mute icon in roster if notifications are muted
+- support unicode emoticons
+- show spinner while enabling encrypted transfer
+- call all available resources at once
+- add simple webcam test
+- [#656](https://github.com/jsxc/jsxc/issues/656) support multiple incoming calls at once
+- use sender avatar color as background color for group chat messages
 
 ### Fixed
-- fix unlimited max size for http file upload
-- [#552](https://github.com/jsxc/jsxc/issues/552) fix muc selection dialog
-- [#569](https://github.com/jsxc/jsxc/issues/569) fix uncaught type error
-- [#588](https://github.com/jsxc/jsxc/issues/588) fix calculation of capability hash
-- reset http upload settings for new connection
-- test for valid jid on roster response
-- ignore roster pushes with no or more than one item element
+- video calls can now be initiated from any tab
+- [#328](https://github.com/jsxc/jsxc/issues/328) MUC joining from any tab
+- fix and improve emoticon insertion
+- remove non-persistent contacts after login
+- translate OTR status messages
+- enhance roster insertion
 
 ### Changed
-- [#473](https://github.com/jsxc/jsxc/issues/473),[#555](https://github.com/jsxc/jsxc/issues/555),[#593](https://github.com/jsxc/jsxc/issues/593) update strophe.jinglejs
-- [#591](https://github.com/jsxc/jsxc/issues/591) update strophe.disco.js
-- update jsxc emoticon
-- update locales
-- [#597](https://github.com/jsxc/jsxc/pull/597) include jid in chat window title
-- more restrictive xml body query
+- use Consistent Color Generation ([XEP-0392])
+- use more natural bounce animation for notice icon
+- use object based public API
+- use custom resource with jsxc prefix as default resource
 
-## 3.2.1 - 2017-06-01
-### Added
-- add Greek translation
+### Developer notes
+- [Typescript], [Webpack], [Handlebars], [Karma], [Mocha], [Chai] and [Sinon]
+- removed `build` and `doc` folder, git submodules, bower and grunt
+- share one XMPP connection across all tabs
+- add plugin API
+- form watcher instead of form option
+- API to add roster menu entries (`jsxc.addMenuEntry()`)
+- API to test BOSH server (`jsxc.testBOSHServer()`)
+- use [SASS guidelines] and [BEM]-like style syntax
+- add commit lint and require [Conventional Commits]
 
-### Fixed
-- fix thumbnail transfer
-- fix handler for muc menu items
-- catch undefined exception during file transfer
-- fix disabled file transfer link
-- [#542](https://github.com/jsxc/jsxc/issues/542) fix fallback language
-- remove favicon badge after logout
+### Removed/Pending
+- Jingle file transfer
+- bookmarks
 
-### Changed
-- reduce thumbnail size
-- enable http upload for muc
-- disable links in last message view
-
-## 3.2.0 - 2017-05-17
-### Added
-- [#150](https://github.com/jsxc/jsxc/issues/150) add Message Archive Management (XEP-0313)
-- [#464](https://github.com/jsxc/jsxc/issues/464) respond to software version request (XEP-0092)
-
-### Fixed
-- [#447](https://github.com/jsxc/jsxc/pull/447) fix muc member presence
-- fix http upload discovery
-- fix vcard retrieval for rooms
-- fix bookmarks
-- [#470](https://github.com/jsxc/jsxc/issues/470) fix receiving message from unknown sender
-- [#483](https://github.com/jsxc/jsxc/issues/483) fix unclickable space
-- catch quota exceeded errors (e.g. Safari in private mode has a quota of 0)
-- [#510](https://github.com/jsxc/jsxc/pull/510) fix muc form
-- [#505](https://github.com/jsxc/jsxc/pull/505) fix i18n key
-- [#515](https://github.com/jsxc/jsxc/issues/515) fix add contact in slave tab
-- fix initial roster loading
-- fix xmpp message uri to unknown jid
-- fix uri scheme handling if offline
-- fix hiding of offline users in roster
-
-### Changed
-- update dependencies
-   - strophe.jinglejs
-   - grunt-contrib-clean
-   - grunt-contrib-uglify
-   - node-sass
-   - strophe.chatstates
-   - strophejs-plugin-mam
-- make max file size optional for http upload service
-- [#480](https://github.com/jsxc/jsxc/issues/480) split avatar loading into chunks
-- [#478](https://github.com/jsxc/jsxc/issues/478) support roster versioning
-- prefer xmpp password from settings over login form
-- [#468](https://github.com/jsxc/jsxc/issues/468) move composing message to window header
-- make message error more visible
-- ignore message errors without id
-- add data-bid to xmpp uris
-- add roster state to roster ready event
+[Typescript]: http://www.typescriptlang.org
+[Webpack]: https://webpack.js.org
+[Handlebars]: https://handlebarsjs.com
+[Karma]: http://karma-runner.github.io/2.0/index.html
+[Mocha]: https://mochajs.org
+[Chai]: https://www.chaijs.com
+[Sinon]: https://sinonjs.org
+[XEP-0392]: https://xmpp.org/extensions/xep-0392.html
+[XEP-0077]: https://xmpp.org/extensions/xep-0077.html
+[XEP-0106]: https://xmpp.org/extensions/xep-0106.html
+[XEP-0249]: https://xmpp.org/extensions/xep-0249.html
+[XEP-0384]: https://xmpp.org/extensions/xep-0384.html
+[Conventional Commits]: https://www.conventionalcommits.org
 
 ## 3.1.1 - 2017-02-14
 ### Fixed
